@@ -1,0 +1,120 @@
+@model MobiWifiApp.CmxObservations
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>CmxObservations</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Clientmac" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Clientmac" class="form-control" />
+                <span asp-validation-for="Clientmac" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ipv4" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Ipv4" class="form-control" />
+                <span asp-validation-for="Ipv4" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ipv6" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Ipv6" class="form-control" />
+                <span asp-validation-for="Ipv6" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Seentime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Seentime" class="form-control" />
+                <span asp-validation-for="Seentime" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Ssid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Ssid" class="form-control" />
+                <span asp-validation-for="Ssid" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Rssi" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Rssi" class="form-control" />
+                <span asp-validation-for="Rssi" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Manufacturer" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Manufacturer" class="form-control" />
+                <span asp-validation-for="Manufacturer" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Os" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Os" class="form-control" />
+                <span asp-validation-for="Os" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LocationLat" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LocationLat" class="form-control" />
+                <span asp-validation-for="LocationLat" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LocationLng" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LocationLng" class="form-control" />
+                <span asp-validation-for="LocationLng" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="LocationUnc" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LocationUnc" class="form-control" />
+                <span asp-validation-for="LocationUnc" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Eventid" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Eventid" class ="form-control" asp-items="ViewBag.Eventid"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

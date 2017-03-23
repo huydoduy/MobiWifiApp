@@ -1,0 +1,110 @@
+@model IEnumerable<MobiWifiApp.CmxObservations>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Clientmac)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ipv4)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ipv6)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Seentime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ssid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rssi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Manufacturer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Os)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocationLat)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocationLng)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LocationUnc)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clientmac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ipv4String)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ipv6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Seentime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ssid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rssi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Os)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationLat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationLng)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationUnc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Event.Type)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,44 @@
+
+@{
+    ViewData["Title"] = "report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@model IEnumerable<MobiWifiApp.Models.Report>
+
+@Html.BeginForm("report", "CmxObservations", FormMethod.Get){
+<p>
+    Month: @Html.DropDownList("moths", (IEnumerable<SelectListItem>)ViewBag.monthss, "Select Month")
+   Years:  @Html.DropDownList("years", (IEnumerable<SelectListItem>)ViewBag.yearss, "Select Year ")
+</p>
+
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>
+                Hours
+            </th>
+            <th>
+                Count
+            </th>
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Hours</td>
+                <td>@item.Count</td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+}
+<h2>report</h2>
+
