@@ -5,18 +5,22 @@ using System.Threading.Tasks;
 
 namespace MobiWifiApp.Models
 {
-    public class Report
+    public class CountPerson
     {
-        public Report()
+
+        public CountPerson()
         {
         }
 
-        public Report(int count, int? hours)
+        public CountPerson(int count, int? times)
         {
             Count = count;
-            Hours = hours;
+            Times=times;
         }
         public int Count { get; set; }
-        public int? Hours { get; set; }
+        public int? Times { get; set; }
     }
+
+
 }
+

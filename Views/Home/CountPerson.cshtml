@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MobiWifiApp.Models.CountPerson>
+
+
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>
+                Count
+            </th>
+            <th>
+                Times
+            </th>
+        </tr>
+
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Count</td>
+                <td>@item.Times</td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>

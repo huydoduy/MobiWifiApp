@@ -1,0 +1,36 @@
+
+@{
+    ViewData["Title"] = "report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@model IEnumerable<MobiWifiApp.Models.Report>
+
+
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>
+                    Hours
+                </th>
+                <th>
+                    Count
+                </th>
+            </tr>
+
+
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Hours</td>
+                    <td>@item.Count</td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using System.Net;
 
-namespace MobiWifiApp
+namespace MobiWifiApp.Models
 {
     public partial class CmxObservations
     {
@@ -20,10 +20,5 @@ namespace MobiWifiApp
         public float LocationUnc { get; set; }
         public long Id { get; set; }
         public long? Eventid { get; set; }
-        public string Ipv4String
-        {
-            get => Ipv4?.ToString();
-        }
-        public virtual CmxEvents Event { get; set; }
     }
 }
