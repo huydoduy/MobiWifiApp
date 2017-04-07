@@ -1,7 +1,12 @@
-﻿@model IEnumerable<MobiWifiApp.Models.CountPerson>
 
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+@{
+    ViewData["Title"] = "report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@model IEnumerable<MobiWifiApp.Models.Report>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
 <script>
         $.ajax(
@@ -17,19 +22,24 @@
                     TESTER = document.getElementById('tester');
                     Plotly.plot(TESTER, [{
                         type: 'bar',
-                        x: data.map(i => i.times),
+                        x: data.map(i => i.hours),
                         y: data.map(i => i.count)
                     }]);
 
 
-                   
+
                 },
 
                 error: function () {
                     alert("Error loading data! Please try again.");
                 }
             });
-   
+   // })
+
 </script>
 
-<div id="tester" style="width:800px;height:400px; margin-top:10%";  ></div>
+<div id="tester" style="width:800px;height:400px; margin-top:10%" ;></div>
+
+
+
+

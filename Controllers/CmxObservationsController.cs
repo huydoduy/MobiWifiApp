@@ -44,28 +44,8 @@ namespace MobiWifiApp.Controllers
 
             return View(cmxObservations);
         }
-        
-        public JsonResult report(int months,int years)
-        {
-
-
-            var result = _context.CmxObservationsLite.Take(10000)  //.Take(10000)
-                .Where(x => x.Seenyear == years && x.Seenmonth == months)
-                .GroupBy(x => x.Seenhour)
-
-                .OrderBy(x => x.Key)
-                .Select(x => new Report(x.Count(), x.Key));
-
-
-
-          
-
-
-            return Json(result.ToList());
-        }
-     
-
-        
+      
+      
         private bool CmxObservationsExists(long id)
         {
             return _context.CmxObservationsLite.Any(e => e.Id == id);

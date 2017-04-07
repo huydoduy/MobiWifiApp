@@ -1,25 +1,47 @@
 @model IEnumerable<MobiWifiApp.Models.CmxObservationsLite>
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
-
-
-<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <title>Index</title>
-</head>
-<body>
-   <form asp-controller="Home" asp-action="ReportByDay" method="get">
-       Month: <input type="number" name="months"> <br />
-      Years : <input type="number" name="years"> <br />
 
+
+    <script>
+
+        $(document).ready(function () {
+            $("#selects").change(function () {
+                var element = "Home/"+$(this).val();
+
+                $("#result").html(element);
+               // alert(element);
+                console.log(element);
+                $("#forms").attr('action', element);
+            })
+        });
+
+    </script>
+
+</head>
+
+<body>
+   <form asp-controller="Home" asp-action="#" method="get" id="forms" style="margin-top:30px;">
+       Month: <input type="number" name="month"> <br />
+      Years : <input type="number" name="year"> <br />
+       Select: <select id="selects">
+                    <option>None</option>
+                    <option value="CountPerson">Report By Months</option>
+                   <option value="ReportByDay">Report By Day</option>
+                   <option value="ReportByHourt">Report By Hours</option>
+
+       </select><br/>
        <input type="submit" value="Search" />
 
     </form>
-    hello
+    <div id="result"></div>
 </body>
 </html>
+

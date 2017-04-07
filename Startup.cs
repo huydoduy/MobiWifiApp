@@ -63,6 +63,17 @@ namespace MobiWifiApp
                     name: "default",
                     template: "{controller=CmxObservations}/{action=Index}/{id?}");
             });
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    
+                    template: "{controller=Home}/{action=CountPerson}/{month}/{year}");
+            });
+
+
         }
+
+
     }
 }

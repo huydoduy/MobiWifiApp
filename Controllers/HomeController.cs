@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MobiWifiApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace MobiWifiApp.Controllers
 {
@@ -20,33 +21,89 @@ namespace MobiWifiApp.Controllers
             return View();
         }
 
-        public async Task<IActionResult> ReportByDay(int months,int years)
+        [HttpPost]
+        public IActionResult ReportByDay(int month,int year)
         {
-            var result = _context.CmxObservationsLite  //.Take(10000)
-               .Where(x => x.Seenyear == years && x.Seenmonth == months)
+            var result = _context.CmxObservationsLite 
+               .Where(x => x.Seenyear == year && x.Seenmonth == month)
                 .GroupBy(x => x.Seenday)
 
-                .Select(x => new Report(x.Select(i =>i.Clientmac).Distinct().Count()  ,1   ));
+                .Select(x => new Report(x.Select(i =>i.Clientmac).Distinct().Count()  ,x.Key  ));
                 
-
-
-
-            return View(await result.ToListAsync());
+            return View(result.ToList());
         }
-        public IActionResult CountPerson()
+        [HttpGet]
+        public IActionResult ReportByDay()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult ReportByHourt(int month,int year)
+        {
+            var result1 = _context.CmxObservationsLite  //.Take(10000)
+               .Where(x => x.Seenyear == year && x.Seenmonth == month)
+               .GroupBy(x => new { x.Seenhour, x.Seenday })
+
+          .Select(x => new Report(x.Select(i => i.Clientmac).Distinct().Count(), x.Key.Seenhour)).
+          
+          ToList();
+
+            var result = result1.GroupBy(i => i.Hours)
+                .Select(x => new Report ((int)x.Average(i =>i.Count),x.Key ))
+                .ToList();
+
+         
+            return Json(result.ToList());
+        }
+        [HttpGet]
+        public IActionResult ReportByHourt()
         {
 
+            return View();
+        }
 
+
+        [HttpPost]
+        public JsonResult CountPerson(int month,int year)
+        {
 
             var result = _context.CmxObservationsLite  //.Take(10000)
-               .Where(x => x.Seenyear == 2017 && x.Seenmonth == 2 &&x.Ssid !=null) 
-                .GroupBy(x => new {x.Clientmac,x.Seenday }).Select(x =>x.Key.Clientmac ).ToList();
+               .Where(x => x.Seenyear == year && x.Seenmonth == month &&x.Ssid !=null) 
+               .GroupBy(x => new {x.Clientmac,x.Seenday }).Select(x =>x.Key.Clientmac ).ToList();
 
             var result2 = result.GroupBy(x => x).Select(x =>x.Count());
             var result3 = result2.GroupBy(x => x).OrderBy(x =>x.Key).Select(x => new CountPerson(x.Count(), x.Key));
 
 
-            return View(result3.ToList());
+            return Json(result3.ToList());
         }
+
+        [HttpGet]
+        public IActionResult CountPerson()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult report(int month, int year)
+        {
+           
+            var result = _context.CmxObservationsLite.Take(10000)  //.Take(10000)
+                .Where(x => x.Seenyear == year && x.Seenmonth == month)
+                .GroupBy(x => x.Seenhour)
+
+                .OrderBy(x => x.Key)
+                .Select(x => new Report(x.Count(), x.Key));
+
+            return Json(result.ToList());
+        }
+        [HttpGet]
+        public IActionResult report()
+        {
+            return View();
+        }
+
+
     }
 }
